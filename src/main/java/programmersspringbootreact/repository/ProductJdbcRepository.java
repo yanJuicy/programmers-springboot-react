@@ -28,7 +28,11 @@ public class ProductJdbcRepository implements ProductRepository {
 
     @Override
     public List<Product> findByCategory(Category category) {
-        return null;
+        return jdbcTemplate.query(
+                "SELECT * FROM products WHERE category = :category",
+                Collections.singletonMap("category", category.toString()),
+                productRowMapper
+        );
     }
 
     @Override
