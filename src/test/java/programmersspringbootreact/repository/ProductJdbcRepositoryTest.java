@@ -47,7 +47,14 @@ class ProductJdbcRepositoryTest {
     @Autowired
     ProductRepository repository;
 
-
+    @Test
+    @DisplayName("상품 추가")
+    void testInsert() {
+        Product product = new Product(UUID.randomUUID(), "new-product", Category.COFFEE_BEAN_PACKAGE, 1000L, "description", LocalDateTime.now(), LocalDateTime.now());
+        repository.insert(product);
+        var all = repository.findAll();
+        assertThat(all.isEmpty()).isFalse();
+    }
 
 
 
