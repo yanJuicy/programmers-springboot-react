@@ -24,6 +24,7 @@ import static com.wix.mysql.EmbeddedMysql.anEmbeddedMysql;
 import static com.wix.mysql.config.MysqldConfig.aMysqldConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -115,6 +116,19 @@ class ProductJdbcRepositoryTest {
 
         var productList = repository.findByCategory(Category.COFFEE_BEAN_PACKAGE);
         MatcherAssert.assertThat(productList.isEmpty(), is(false));
+    }
+
+    @Test
+    @DisplayName("상품을 수정")
+    void testUpdate() {
+        Product product = new Product(UUID.randomUUID(), "new-product", Category.COFFEE_BEAN_PACKAGE, 1000L, "description", LocalDateTime.now(), LocalDateTime.now());
+        repository.insert(product);
+        product.setProductName("update-product");
+        repository.update(product);
+
+        var updatedProduct = repository.findById(product.getProductId());
+        MatcherAssert.assertThat(updatedProduct.isEmpty(), is(false));
+        MatcherAssert.assertThat(updatedProduct.get(), samePropertyValuesAs(product));
     }
 
     @Test
