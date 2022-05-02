@@ -4,7 +4,10 @@ import com.wix.mysql.EmbeddedMysql;
 import com.wix.mysql.ScriptResolver;
 import com.wix.mysql.config.Charset;
 import com.wix.mysql.distribution.Version;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -56,6 +59,20 @@ class ProductJdbcRepositoryTest {
         assertThat(all.isEmpty()).isFalse();
     }
 
+    @Test
+    @DisplayName("상품을 전체 삭제")
+    void testDeleteAll() {
+        Product product = new Product(UUID.randomUUID(), "new-product", Category.COFFEE_BEAN_PACKAGE, 1000L, "description", LocalDateTime.now(), LocalDateTime.now());
+        repository.insert(product);
+        Product product2 = new Product(UUID.randomUUID(), "new-product", Category.COFFEE_BEAN_PACKAGE, 1000L, "description", LocalDateTime.now(), LocalDateTime.now());
+        repository.insert(product2);
+        Product product3 = new Product(UUID.randomUUID(), "new-product", Category.COFFEE_BEAN_PACKAGE, 1000L, "description", LocalDateTime.now(), LocalDateTime.now());
+        repository.insert(product3);
+
+        var all = repository.findAll();
+        repository.deleteAll();
+        assertThat(all.isEmpty()).isTrue();
+    }
 
 
 }

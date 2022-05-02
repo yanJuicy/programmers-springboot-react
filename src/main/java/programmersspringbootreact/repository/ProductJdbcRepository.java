@@ -23,7 +23,7 @@ public class ProductJdbcRepository implements ProductRepository {
 
     @Override
     public List<Product> findAll() {
-        return null;
+        return jdbcTemplate.query("select * from products", productRowMapper);
     }
 
     @Override
@@ -64,6 +64,17 @@ public class ProductJdbcRepository implements ProductRepository {
         jdbcTemplate.update("DELETE FROM products", Collections.emptyMap());
     }
 
+    private static final RowMapper<Product> productRowMapper = (resultSet, i) -> {
+        var productId = toUUID(resultSet.getBytes("product_id"));
+        var productName = resultSet.getString("product_name");
+        var category = Category.valueOf(resultSet.getString("category"));
+        var price = resultSet.getLong("price");
+        var description = resultSet.getString("description");
+        var createdAt = toLocalDateTime(resultSet.getTimestamp("created_at"));
+        var updatedAt = toLocalDateTime(resultSet.getTimestamp("updated_at"));
+
+        return new Product(productId, productName, category, price, description, createdAt, updatedAt);
+    };
 
     private static final Map<String, Object> toParamMap(Product product) {
         var paramMap = new HashMap<String, Object>();
