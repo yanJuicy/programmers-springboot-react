@@ -14,10 +14,12 @@ import programmersspringbootreact.repository.ProductRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static com.wix.mysql.EmbeddedMysql.anEmbeddedMysql;
 import static com.wix.mysql.config.MysqldConfig.aMysqldConfig;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -66,6 +68,16 @@ class DefaultProductServiceTest {
         List<Product> productListByRepository = productRepository.findByCategory(Category.COFFEE_BEAN_PACKAGE);
 
         assertEquals(productListByService.size(), productListByRepository.size());
+    }
+
+    @Test
+    void createProductTest() {
+        Product savedProduct = productService.createProduct("test", Category.COFFEE_BEAN_PACKAGE, 1000, "test");
+
+        Optional<Product> findProduct = productRepository.findById(savedProduct.getProductId());
+
+        assertThat(findProduct).isPresent();
+        assertEquals(findProduct.get().getProductId(), savedProduct.getProductId());
     }
 
 }
