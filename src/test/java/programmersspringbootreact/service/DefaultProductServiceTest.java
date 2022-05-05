@@ -20,6 +20,7 @@ import java.util.UUID;
 import static com.wix.mysql.EmbeddedMysql.anEmbeddedMysql;
 import static com.wix.mysql.config.MysqldConfig.aMysqldConfig;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -71,6 +72,7 @@ class DefaultProductServiceTest {
     }
 
     @Test
+    @DisplayName("상품 생성")
     void createProductTest() {
         Product savedProduct = productService.createProduct("test", Category.COFFEE_BEAN_PACKAGE, 1000, "test");
 
@@ -78,6 +80,22 @@ class DefaultProductServiceTest {
 
         assertThat(findProduct).isPresent();
         assertEquals(findProduct.get().getProductId(), savedProduct.getProductId());
+    }
+
+    @Test
+    @DisplayName("상품 전체 조회 테스트")
+    void getAllProductsTest() {
+        Product savedProduct = productService.createProduct("test", Category.COFFEE_BEAN_PACKAGE, 1000, "test");
+
+        List<Product> allProducts = productService.getAllProducts();
+
+        assertAll(
+                () -> assertThat(allProducts).hasSize(1),
+                () -> assertThat(allProducts.get(0).getProductId()).isEqualTo(savedProduct.getProductId()),
+                () -> assertThat(allProducts.get(0).getProductName()).isEqualTo(savedProduct.getProductName()),
+                () -> assertThat(allProducts.get(0).getCategory()).isEqualTo(savedProduct.getCategory()),
+                () -> assertThat(allProducts.get(0).getPrice()).isEqualTo(savedProduct.getPrice())
+        );
     }
 
 }
