@@ -11,16 +11,13 @@ import programmersspringbootreact.order.model.OrderStatus;
 import programmersspringbootreact.product.model.Category;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static programmersspringbootreact.utils.JdbcUtils.toLocalDateTime;
 import static programmersspringbootreact.utils.JdbcUtils.toUUID;
 
 @Repository
-public class OrderJdbcRepository implements OrderRepository{
+public class OrderJdbcRepository implements OrderRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -49,6 +46,17 @@ public class OrderJdbcRepository implements OrderRepository{
                 "INSERT INTO order_items(order_id, product_id, category, price, quantity, created_at, updated_at) " +
                         "VALUES (UUID_TO_BIN(:orderId), UUID_TO_BIN(:productId), :category, :price, :quantity, :createdAt, :updatedAt)",
                 toOrderItemParamMap(order.getOrderId(), order.getCreatedAt(), order.getUpdatedAt(), item)));
+        return order;
+    }
+
+    @Override
+    public Optional<Order> findOrderByEmail(Email email) {
+        String address = email.getAddress();
+        Optional<Order> order = Optional.of(jdbcTemplate.queryForObject(
+                "SELECT * FROM orders WHERE email = :email",
+                Collections.singletonMap("email", address),
+                orderRowMapper));
+
         return order;
     }
 

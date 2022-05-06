@@ -18,6 +18,7 @@ import programmersspringbootreact.product.repository.ProductRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static com.wix.mysql.EmbeddedMysql.anEmbeddedMysql;
@@ -96,5 +97,22 @@ class OrderJdbcRepositoryTest {
         assertThat(orderItems).isNotEmpty();
     }
 
+    @Test
+    void findByEmailTest() {
+        Product product1 = new Product(UUID.randomUUID(), "test-product1", Category.COFFEE_BEAN_PACKAGE, 1000, "test" ,LocalDateTime.now(), LocalDateTime.now());
+        Product product2 = new Product(UUID.randomUUID(), "test-product2", Category.COFFEE_BEAN_PACKAGE, 2000, "test2" ,LocalDateTime.now(), LocalDateTime.now());
+        productRepository.insert(product1);
+        productRepository.insert(product2);
+
+        List<OrderItem> orderItemList = List.of(
+                new OrderItem(product1.getProductId(), Category.COFFEE_BEAN_PACKAGE, 2000, 2),
+                new OrderItem(product2.getProductId(), Category.COFFEE_BEAN_PACKAGE, 6000, 3));
+        Order order = new Order(UUID.randomUUID(), new Email("test@test.com"), "test city", "test code", orderItemList, OrderStatus.ACCEPTED, LocalDateTime.now(), LocalDateTime.now());
+        orderRepository.insert(order);
+
+        Optional<Order> foundOrder = orderRepository.findOrderByEmail(new Email("test@test.com"));
+
+        assertThat(foundOrder.isEmpty()).isFalse();
+    }
 
 }
