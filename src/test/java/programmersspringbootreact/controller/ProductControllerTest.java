@@ -30,4 +30,12 @@ class ProductControllerTest {
                 .andExpect(content().contentType(MediaType.valueOf("text/html;charset=UTF-8")));
     }
 
+    @Test
+    void newPageTest() throws Exception {
+        String url = "/new-product";
+        mockMvc.perform(get(url))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.valueOf("text/html;charset=UTF-8")));
+    }
+
 }
