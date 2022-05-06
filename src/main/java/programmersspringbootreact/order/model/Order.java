@@ -40,7 +40,7 @@ public class Order {
     public String getPostcode() {
         return postcode;
     }
-    
+
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
