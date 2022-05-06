@@ -1,9 +1,9 @@
-package programmersspringbootreact.service;
+package programmersspringbootreact.product.service;
 
 import org.springframework.stereotype.Service;
-import programmersspringbootreact.model.Category;
-import programmersspringbootreact.model.Product;
-import programmersspringbootreact.repository.ProductRepository;
+import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.model.Product;
+import programmersspringbootreact.product.repository.ProductRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

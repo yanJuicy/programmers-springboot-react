@@ -1,4 +1,4 @@
-package programmersspringbootreact.model;
+package programmersspringbootreact.product.model;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

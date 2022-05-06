@@ -1,10 +1,10 @@
-package programmersspringbootreact.controller;
+package programmersspringbootreact.product.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import programmersspringbootreact.service.ProductService;
+import programmersspringbootreact.product.service.ProductService;
 
 @Controller
 public class ProductController {

@@ -1,7 +1,7 @@
-package programmersspringbootreact.repository;
+package programmersspringbootreact.product.repository;
 
-import programmersspringbootreact.model.Category;
-import programmersspringbootreact.model.Product;
+import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.model.Product;
 
 import java.util.List;
 import java.util.Optional;

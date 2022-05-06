@@ -1,4 +1,4 @@
-package programmersspringbootreact.controller;
+package programmersspringbootreact.product.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -7,10 +7,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import programmersspringbootreact.model.Category;
-import programmersspringbootreact.service.ProductService;
+import programmersspringbootreact.product.controller.CreateProductRequestDto;
+import programmersspringbootreact.product.controller.ProductController;
+import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.service.ProductService;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

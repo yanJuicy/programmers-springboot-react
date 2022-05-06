@@ -1,4 +1,4 @@
-package programmersspringbootreact.repository;
+package programmersspringbootreact.product.repository;
 
 import com.wix.mysql.EmbeddedMysql;
 import com.wix.mysql.ScriptResolver;
@@ -6,16 +6,12 @@ import com.wix.mysql.config.Charset;
 import com.wix.mysql.distribution.Version;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
-import programmersspringbootreact.model.Category;
-import programmersspringbootreact.model.Product;
+import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.model.Product;
+import programmersspringbootreact.product.repository.ProductRepository;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

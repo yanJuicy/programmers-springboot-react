@@ -1,11 +1,11 @@
-package programmersspringbootreact.repository;
+package programmersspringbootreact.product.repository;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import programmersspringbootreact.model.Category;
-import programmersspringbootreact.model.Product;
+import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.model.Product;
 
 import java.util.*;
 

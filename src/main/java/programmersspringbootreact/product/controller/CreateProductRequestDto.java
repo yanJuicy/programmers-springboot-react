@@ -1,6 +1,6 @@
-package programmersspringbootreact.controller;
+package programmersspringbootreact.product.controller;
 
-import programmersspringbootreact.model.Category;
+import programmersspringbootreact.product.model.Category;
 
 public class CreateProductRequestDto {
     private String productName;

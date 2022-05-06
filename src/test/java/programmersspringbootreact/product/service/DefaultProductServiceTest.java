@@ -1,4 +1,4 @@
-package programmersspringbootreact.service;
+package programmersspringbootreact.product.service;
 
 import com.wix.mysql.EmbeddedMysql;
 import com.wix.mysql.ScriptResolver;
@@ -8,9 +8,10 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import programmersspringbootreact.model.Category;
-import programmersspringbootreact.model.Product;
-import programmersspringbootreact.repository.ProductRepository;
+import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.model.Product;
+import programmersspringbootreact.product.repository.ProductRepository;
+import programmersspringbootreact.product.service.ProductService;
 
 import java.time.LocalDateTime;
 import java.util.List;

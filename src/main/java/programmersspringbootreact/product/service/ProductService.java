@@ -1,7 +1,7 @@
-package programmersspringbootreact.service;
+package programmersspringbootreact.product.service;
 
-import programmersspringbootreact.model.Category;
-import programmersspringbootreact.model.Product;
+import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.model.Product;
 
 import java.util.List;
 
