@@ -49,6 +49,14 @@ public class Order {
         return orderStatus;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
     public void setAddress(String address) {
         this.address = address;
         this.updatedAt = LocalDateTime.now();
