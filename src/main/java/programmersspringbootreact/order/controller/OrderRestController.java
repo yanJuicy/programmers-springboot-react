@@ -15,6 +15,15 @@ public class OrderRestController {
     public OrderRestController(OrderService orderService) {
         this.orderService = orderService;
     }
-    
+
+    @PostMapping("/api/v1/orders")
+    public Order createOrder(@RequestBody CreateOrderRequestDto orderRequest) {
+        return orderService.createOrder(
+                new Email(orderRequest.email()),
+                orderRequest.address(),
+                orderRequest.postcode(),
+                orderRequest.orderItems()
+        );
+    }
 
 }
