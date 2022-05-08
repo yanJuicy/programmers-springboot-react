@@ -1,6 +1,7 @@
 package programmersspringbootreact.order.repository;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,14 @@ public class OrderJdbcRepository implements OrderRepository {
     @Override
     public List<OrderItem> findAllOrderItems() {
         return jdbcTemplate.query("select * from order_items", orderItemRowMapper);
+    }
+
+    @Override
+    public List<OrderItem> findAllOrderItemsById(UUID orderId) {
+        System.out.println("find " + orderId);
+        return jdbcTemplate.query("SELECT * FROM order_items WHERE order_id = UUID_TO_BIN(:orderId)",
+                Collections.singletonMap("orderId", orderId.toString().getBytes()),
+                orderItemRowMapper);
     }
 
     @Transactional
