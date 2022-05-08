@@ -28,6 +28,7 @@
         <th scope="col">createdAt</th>
         <th scope="col">updatedAt</th>
         <th scope="col">삭제</th>
+        <th scope="col">수정</th>
     </tr>
     </thead>
     <tbody>
@@ -44,6 +45,9 @@
                 <input type="hidden" name="_method" value="DELETE"/>
                 <input type="submit" value="삭제">
             </form>
+        </td>
+        <td>
+            <a th:href="@{/products/{uuid}(uuid = ${product.productId})}">수정</a>
         </td>
     </tr>
     </tbody>
