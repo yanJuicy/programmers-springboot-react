@@ -38,7 +38,7 @@
         <td th:text="*{createdAt}"></td>
         <td th:text="*{updatedAt}"></td>
         <td>
-            <a>상세</a>
+            <a th:href="@{/orders/{uuid}(uuid = ${order.orderId})}">상세</a>
         </td>
     </tr>
     </tbody>
