@@ -88,6 +88,20 @@ public class ProductJdbcRepository implements ProductRepository {
         jdbcTemplate.update("DELETE FROM products", Collections.emptyMap());
     }
 
+    @Override
+    public void deleteById(UUID productId) {
+
+        jdbcTemplate.update("SET foreign_key_checks = 0", Collections.emptyMap());
+
+        var delete = jdbcTemplate.update("DELETE FROM products WHERE product_id = UUID_TO_BIN(:productId)",
+                Collections.singletonMap("productId", productId.toString().getBytes()));
+        jdbcTemplate.update("SET foreign_key_checks = 1", Collections.emptyMap());
+
+        if (delete != 1) {
+            throw new IllegalArgumentException("Nothing was deleted");
+        }
+    }
+
     private static final RowMapper<Product> productRowMapper = (resultSet, i) -> {
         var productId = toUUID(resultSet.getBytes("product_id"));
         var productName = resultSet.getString("product_name");

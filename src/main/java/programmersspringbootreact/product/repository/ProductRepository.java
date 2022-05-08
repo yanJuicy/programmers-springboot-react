@@ -22,4 +22,6 @@ public interface ProductRepository {
     Optional<Product> findByName(String productName);
 
     void deleteAll();
+
+    void deleteById(UUID productId);
 }
