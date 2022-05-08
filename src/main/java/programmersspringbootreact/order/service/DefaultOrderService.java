@@ -35,4 +35,14 @@ public class DefaultOrderService implements OrderService {
     public List<Order> getAllOrders() {
         return orderRepository.findAllOrders();
     }
+
+    @Override
+    public List<OrderItem> getAllOrderItemsById(UUID orderId) {
+        return orderRepository.findAllOrderItemsById(orderId);
+    }
+
+    @Override
+    public List<OrderItem> getAllOrderItems() {
+        return orderRepository.findAllOrderItems();
+    }
 }

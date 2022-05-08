@@ -5,6 +5,7 @@ import programmersspringbootreact.order.model.Order;
 import programmersspringbootreact.order.model.OrderItem;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface OrderService {
 
@@ -13,4 +14,8 @@ public interface OrderService {
     List<Order> getAllOrdersByEmail(String email);
 
     List<Order> getAllOrders();
+
+    List<OrderItem> getAllOrderItemsById(UUID orderId);
+
+    List<OrderItem> getAllOrderItems();
 }
