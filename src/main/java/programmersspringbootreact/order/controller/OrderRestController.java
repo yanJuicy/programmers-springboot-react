@@ -1,11 +1,13 @@
 package programmersspringbootreact.order.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import programmersspringbootreact.order.model.Email;
 import programmersspringbootreact.order.model.Order;
 import programmersspringbootreact.order.service.OrderService;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class OrderRestController {
@@ -24,6 +26,12 @@ public class OrderRestController {
                 orderRequest.postcode(),
                 orderRequest.orderItems()
         );
+    }
+
+    @GetMapping("/api/v1/orders")
+    public List<Order> orderDetailPage(@RequestParam String email) {
+        var orders = orderService.getAllOrdersByEmail(email);
+        return orders;
     }
 
 }
