@@ -27,6 +27,7 @@
         <th scope="col">description</th>
         <th scope="col">createdAt</th>
         <th scope="col">updatedAt</th>
+        <th scope="col">삭제</th>
     </tr>
     </thead>
     <tbody>
@@ -38,6 +39,12 @@
         <td th:text="*{description}"></td>
         <td th:text="*{createdAt}"></td>
         <td th:text="*{updatedAt}"></td>
+        <td>
+            <form th:action="@{/products/{uuid}(uuid = ${product.productId})}" method="POST" >
+                <input type="hidden" name="_method" value="DELETE"/>
+                <input type="submit" value="삭제">
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
