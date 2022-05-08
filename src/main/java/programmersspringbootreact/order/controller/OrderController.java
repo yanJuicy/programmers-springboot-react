@@ -32,4 +32,9 @@ public class OrderController {
         return "order-detail";
     }
 
+    @GetMapping("/orders/confirm")
+    public String orderConfirmPage() {
+        return "order-confirm";
+    }
+
 }

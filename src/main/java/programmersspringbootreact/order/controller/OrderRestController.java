@@ -28,8 +28,9 @@ public class OrderRestController {
         );
     }
 
-    @GetMapping("/api/v1/orders")
+    @GetMapping("/api/v1/orders/email")
     public List<Order> orderDetailPage(@RequestParam String email) {
+        email.replace("%40", "@");
         var orders = orderService.getAllOrdersByEmail(email);
         return orders;
     }
