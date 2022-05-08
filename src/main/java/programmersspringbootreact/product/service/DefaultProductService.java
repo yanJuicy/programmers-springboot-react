@@ -32,4 +32,9 @@ public class DefaultProductService implements ProductService {
     public Product createProduct(String productName, Category category, long price, String description) {
         return productRepository.insert(new Product(UUID.randomUUID(), productName, category, price, description, LocalDateTime.now(), LocalDateTime.now()));
     }
+
+    @Override
+    public void deleteById(UUID uuid) {
+        productRepository.deleteById(uuid);
+    }
 }
