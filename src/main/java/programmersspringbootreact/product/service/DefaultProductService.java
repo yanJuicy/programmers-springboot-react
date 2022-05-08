@@ -37,4 +37,14 @@ public class DefaultProductService implements ProductService {
     public void deleteById(UUID uuid) {
         productRepository.deleteById(uuid);
     }
+
+    @Override
+    public Product getProductById(UUID productId) {
+        return productRepository.findById(productId).get();
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
+        return productRepository.update(product);
+    }
 }
