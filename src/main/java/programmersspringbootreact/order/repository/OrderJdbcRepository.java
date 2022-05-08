@@ -60,6 +60,11 @@ public class OrderJdbcRepository implements OrderRepository {
         return order;
     }
 
+    @Override
+    public List<Order> findAllOrdersByEmail(String email) {
+        return jdbcTemplate.query("SELECT * FROM orders WHERE email = :email", Collections.singletonMap("email", email), orderRowMapper);
+    }
+
     private static final RowMapper<Order> orderRowMapper = (resultSet, i) -> {
         var orderId = toUUID(resultSet.getBytes("order_id"));
         var email = resultSet.getString("email");

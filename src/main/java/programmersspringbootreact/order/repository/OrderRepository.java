@@ -12,4 +12,5 @@ public interface OrderRepository {
     List<OrderItem> findAllOrderItems();
     Order insert(Order order);
     Optional<Order> findOrderByEmail(Email email);
+    List<Order> findAllOrdersByEmail(String email);
 }
