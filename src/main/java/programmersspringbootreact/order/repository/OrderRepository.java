@@ -13,6 +13,7 @@ public interface OrderRepository {
     List<OrderItem> findAllOrderItems();
     List<OrderItem> findAllOrderItemsById(UUID orderId);
     Order insert(Order order);
+    Order update(Order order);
     Optional<Order> findOrderByEmail(Email email);
     List<Order> findAllOrdersByEmail(String email);
 }

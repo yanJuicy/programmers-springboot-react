@@ -10,6 +10,7 @@ import programmersspringbootreact.order.model.Order;
 import programmersspringbootreact.order.model.OrderItem;
 import programmersspringbootreact.order.model.OrderStatus;
 import programmersspringbootreact.product.model.Category;
+import programmersspringbootreact.product.model.Product;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -55,6 +56,21 @@ public class OrderJdbcRepository implements OrderRepository {
                 "INSERT INTO order_items(order_id, product_id, category, price, quantity, created_at, updated_at) " +
                         "VALUES (UUID_TO_BIN(:orderId), UUID_TO_BIN(:productId), :category, :price, :quantity, :createdAt, :updatedAt)",
                 toOrderItemParamMap(order.getOrderId(), order.getCreatedAt(), order.getUpdatedAt(), item)));
+        return order;
+    }
+
+    @Override
+    public Order update(Order order) {
+        var update = jdbcTemplate.update(
+                "UPDATE orders SET email = :email, address = :address, postcode = :postcode, order_status = :orderStatus, created_at = :createdAt, updated_at = :updatedAt " +
+                        "WHERE order_id = UUID_TO_BIN(:orderId)",
+                toOrderParamMap(order)
+        );
+
+        if (update != 1) {
+            throw new RuntimeException("Nothing was updated");
+        }
+
         return order;
     }
 
