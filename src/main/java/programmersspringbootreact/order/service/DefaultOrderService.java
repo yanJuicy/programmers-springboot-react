@@ -25,4 +25,14 @@ public class DefaultOrderService implements OrderService {
         Order order = new Order(UUID.randomUUID(), email, address, postcode, orderItems, OrderStatus.ACCEPTED, LocalDateTime.now(), LocalDateTime.now());
         return orderRepository.insert(order);
     }
+
+    @Override
+    public List<Order> getAllOrdersByEmail(String email) {
+        return orderRepository.findAllOrdersByEmail(email);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAllOrders();
+    }
 }
