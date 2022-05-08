@@ -1,5 +1,7 @@
 package programmersspringbootreact.product.model;
 
+import programmersspringbootreact.product.controller.UpdateProductRequestDto;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -68,5 +70,13 @@ public class Product {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public void update(UpdateProductRequestDto updateProductRequestDto) {
+        this.productName = updateProductRequestDto.getProductName();
+        this.category = updateProductRequestDto.getCategory();
+        this.price = updateProductRequestDto.getPrice();
+        this.description = updateProductRequestDto.getDescription();
+        this.updatedAt = LocalDateTime.now();
     }
 }
